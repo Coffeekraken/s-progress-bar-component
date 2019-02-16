@@ -1,0 +1,116 @@
+/**
+ * @name    SProgressBarComponent
+ * Create nice and customizable progress bar
+ *
+ * @example   html
+ * <div class="progress-bar progress-bar--stripped" value="50"></div>
+ *
+ * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+ */
+
+/**
+ * Print out the bare and style component css
+ * @param 	{List<Color>} 		[$color=default] 		The color to generate
+ */
+@mixin s-progress-bar(
+  $color: default
+) {
+  @include s-progress-bar-bare();
+  @include s-progress-bar-style($color);
+}
+
+/**
+ * Print out the bare component css
+ */
+@mixin s-progress-bar-bare() {
+  @include s-component('progress-bar') {
+    width: 100%;
+    height: 1em;
+    border-radius: s-lnf(border-radius);
+    position: relative;
+
+    @for $i from 0 through 100 {
+      &[value="#{$i}"]:before {
+        width: unquote("#{$i}%");
+      }
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      border-radius: s-lnf(border-radius);
+    }
+  }
+}
+
+/**
+ * Print out the style component css
+ * @param 	{Color} 		[$color=default] 		The color to generate
+ */
+@mixin s-progress-bar-style(
+  $color: default
+) {
+  @include s-component('progress-bar') {
+    background-color: s-color($color, -opacity .1);
+
+    &:before {
+      background-color: s-color($color);
+      transition: width .2s cubic-bezier(1,0,0,1) 0s;
+    }
+  }
+}
+
+/**
+ * Print out the bare and style stripped component css
+ * @param 	{List<Color>} 		[$color=default] 		The color to generate
+ */
+ @mixin s-progress-bar-stripped(
+  $color: default
+) {
+  @include s-progress-bar-stripped-bare();
+  @include s-progress-bar-stripped-style($color);
+}
+
+/**
+ * Print out the stripped bare component css
+ */
+@mixin s-progress-bar-stripped-bare() {
+  @include s-component('progress-bar') {
+    &:before {
+    }
+  }
+}
+
+/**
+ * Print out the stripped style component css
+ */
+@mixin s-progress-bar-stripped-style() {
+  @include s-component('progress-bar') {
+    &:before {
+      background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, .2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, .2) 50%,
+        rgba(255, 255, 255, .2) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 50px 50px;
+      animation: progress-bar-stripped-move 2s linear infinite;
+    }
+  }
+}
+
+@keyframes progress-bar-stripped-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}

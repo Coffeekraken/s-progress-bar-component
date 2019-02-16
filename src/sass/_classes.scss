@@ -1,0 +1,61 @@
+/**
+ * @name    SProgressBarComponent
+ * Create nice and customizable progress bar
+ *
+ * @example   html
+ * <div class="progress-bar progress-bar--stripped" value="50"></div>
+ *
+ * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+ */
+
+/**
+ * Print out the bare and style component css
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+@mixin s-progress-bar-classes(
+  $colors: default primary secondary
+) {
+  @include s-progress-bar-classes-bare();
+  @include s-progress-bar-classes-style($colors);
+}
+
+/**
+ * Print out the bare component css
+ */
+@mixin s-progress-bar-classes-bare() {
+  @include s-component('progress-bar') {
+    .#{s-component()} {
+      @include s-progress-bar-bare();
+    }
+    .#{s-component()}--stripped {
+      @include s-progress-bar-stripped-bare()
+    }
+  }
+}
+
+/**
+ * Print out the style component css
+ * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
+ */
+@mixin s-progress-bar-classes-style(
+  $colors: default primary secondary
+) {
+  @include s-component('progress-bar') {
+    @each $color in $colors {
+      $sel : ".#{s-component()}--#{$color}";
+
+      @if $color == default {
+        $sel : ".#{s-component()}";
+      }
+
+      #{$sel} {
+        @include s-progress-bar-style($color);
+      }
+
+      .#{s-component()}--stripped {
+        @include s-progress-bar-stripped-style()
+      }
+
+    }
+  }
+}
