@@ -3,7 +3,7 @@ module.exports = {
   port: 3000,
 
   // title
-  title: 's-{component-name}-component',
+  title: 's-progress-bar-component',
 
   // layout
   layout: 'right',
