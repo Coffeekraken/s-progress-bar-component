@@ -1,6 +1,6 @@
 {
   "name": "coffeekraken-s-progress-bar-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create nice and customizable progress bar",
   "main": "dist/index.js",
   "homepage": "http://coffeekraken.io",
@@ -46,8 +46,7 @@
   },
   "pre-commit": [
     "pretty-quick-commit",
-    "test",
-    "lint"
+    "test"
   ],
   "keywords": [
     "progress",
@@ -103,6 +102,7 @@
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.3.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",

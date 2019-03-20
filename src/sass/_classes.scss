@@ -12,9 +12,7 @@
  * Print out the bare and style component css
  * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
  */
-@mixin s-progress-bar-classes(
-  $colors: default primary secondary
-) {
+@mixin s-progress-bar-classes($colors: default primary secondary) {
   @include s-progress-bar-classes-bare();
   @include s-progress-bar-classes-style($colors);
 }
@@ -28,7 +26,7 @@
       @include s-progress-bar-bare();
     }
     .#{s-component()}--stripped {
-      @include s-progress-bar-stripped-bare()
+      @include s-progress-bar-stripped-bare();
     }
   }
 }
@@ -37,25 +35,40 @@
  * Print out the style component css
  * @param 	{List<Color>} 		[$color=default primary secondary] 		The colors to generate
  */
-@mixin s-progress-bar-classes-style(
-  $colors: default primary secondary
-) {
+@mixin s-progress-bar-classes-style($colors: default primary secondary) {
   @include s-component('progress-bar') {
     @each $color in $colors {
-      $sel : ".#{s-component()}--#{$color}";
+      $sel: '#{s-component()}--#{$color}';
 
       @if $color == default {
-        $sel : ".#{s-component()}";
+        $sel: '#{s-component()}';
       }
 
-      #{$sel} {
+      /**
+       * @name    Progress bar
+       * Simple #{$color} progress bar
+       * @styleguide    Atoms / Progress bar
+       * @example    html
+       * <div class="#{s-component()} #{s-component()}--#{$color}" value="75"></div>
+       * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+       * @see    https://github.com/Coffeekraken/s-progress-bar-component
+       */
+      .#{$sel} {
         @include s-progress-bar-style($color);
       }
+    }
 
-      .#{s-component()}--stripped {
-        @include s-progress-bar-stripped-style()
-      }
-
+    /**
+      * @name    Progress bar
+      * Simple stripped progress bar
+      * @styleguide    Atoms / Progress bar
+      * @example    html
+      * <div class="#{s-component()} #{s-component()}--stripped" value="75"></div>
+      * @author    Olivier Bossel <olivier.bossel@gmail.com> (https://olivierbossel.com)
+      * @see    https://github.com/Coffeekraken/s-progress-bar-component
+      */
+    .#{s-component()}--stripped {
+      @include s-progress-bar-stripped-style();
     }
   }
 }
