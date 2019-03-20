@@ -1,6 +1,6 @@
 {
   "name": "coffeekraken-s-progress-bar-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create nice and customizable progress bar",
   "main": "dist/index.js",
   "homepage": "http://coffeekraken.io",
